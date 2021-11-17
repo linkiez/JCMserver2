@@ -2,7 +2,7 @@ const database = require('../models');
 
 class ProdutosController {
 
-    static async findAll(req, res, next) {
+    static async findAllProdutos(req, res, next) {
 
         try{
             const produtos = await database.Produtos.findAll();
@@ -13,7 +13,7 @@ class ProdutosController {
         }
     }
 
-    static async findOne(req, res, next) {
+    static async findOneProduto(req, res, next) {
         const { id } = req.params;
         try{
             const produto = await database.Produtos.findOne({where:{ id: Number(id) }});
@@ -24,7 +24,19 @@ class ProdutosController {
         }
     }
 
-    static async create(req, res, next) {
+    static async findProdutoByName(req, res, next){
+        const body = req.body;
+        const nome = body.nome;
+        try{
+            const produto = await database.Produtos.findOne({where:{ nome: nome }});
+            return res.status(200).json(produto);
+        }catch(error){
+            console.error(error.message);
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async createProduto(req, res, next) {
         const produto = req.body;
         try{
             const produtoCreated = await database.Produtos.create(produto);
@@ -35,7 +47,7 @@ class ProdutosController {
         }
     }
 
-    static async update(req, res, next) {
+    static async updateProduto(req, res, next) {
         const { id } = req.params;
         const produtoUpdate = req.body;
         try{
@@ -48,7 +60,7 @@ class ProdutosController {
         }
     }
 
-    static async destroy(req, res, next) {
+    static async destroyProduto(req, res, next) {
         const { id } = req.params;
         try{
             await database.Produtos.destroy({where:{ id: Number(id) }});
