@@ -28,7 +28,7 @@ class FornecedoresController {
         const fornecedor = req.body;
         try{
             const fornecedorCreated = await database.Fornecedores.create(fornecedor);
-            return res.status(200).json(fornecedorCreated);
+            return res.status(201).json(fornecedorCreated);
         }catch(error){
             console.error(error.message);
             return res.status(500).json(error.message);
@@ -41,7 +41,7 @@ class FornecedoresController {
         try{
             await database.Fornecedores.update(fornecedorUpdate, {where:{ id: Number(id) }});
             const fornecedorUpdated = await database.Fornecedores.findOne({where:{ id: Number(id) }});
-            return res.status(200).json(fornecedorUpdated);
+            return res.status(202).json(fornecedorUpdated);
         }catch(error){
             console.error(error.message);
             return res.status(500).json(error.message);
@@ -52,7 +52,7 @@ class FornecedoresController {
         const { id } = req.params;
         try{
             await database.Fornecedores.destroy({where:{ id: Number(id) }});
-            return res.status(200).json({message: `Fornecedor apagado`});
+            return res.status(202).json({message: `Fornecedor apagado`});
         }catch(error){
             console.error(error.message);
             return res.status(500).json(error.message);

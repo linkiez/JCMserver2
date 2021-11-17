@@ -28,7 +28,7 @@ class ProdutosController {
         const produto = req.body;
         try{
             const produtoCreated = await database.Produtos.create(produto);
-            return res.status(200).json(produtoCreated);
+            return res.status(201).json(produtoCreated);
         }catch(error){
             console.error(error.message);
             return res.status(500).json(error.message);
@@ -41,7 +41,7 @@ class ProdutosController {
         try{
             await database.Produtos.update(produtoUpdate, {where:{ id: Number(id) }});
             const produtoUpdated = await database.Produtos.findOne({where:{ id: Number(id) }});
-            return res.status(200).json(produtoUpdated);
+            return res.status(202).json(produtoUpdated);
         }catch(error){
             console.error(error.message);
             return res.status(500).json(error.message);
@@ -52,12 +52,14 @@ class ProdutosController {
         const { id } = req.params;
         try{
             await database.Produtos.destroy({where:{ id: Number(id) }});
-            return res.status(200).json({message: `Produto apagado`});
+            return res.status(202).json({message: `Produto apagado`});
         }catch(error){
             console.error(error.message);
             return res.status(500).json(error.message);
         }
     }
+
+    
 }
 
 module.exports = ProdutosController;

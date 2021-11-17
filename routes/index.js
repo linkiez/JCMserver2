@@ -6,8 +6,9 @@ const fornecedores = require('./fornecedoresRoutes');
 const produtos = require('./produtosRoutes');
 
 var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200
+  origin: ['*'],
+  optionsSuccessStatus: 200,
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }
 
 
