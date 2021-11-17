@@ -1,0 +1,27 @@
+{
+  "name": "jcmserver2",
+  "version": "1.0.0",
+  "description": "Nova tentativa com sequelize",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linkiez/JCMserver2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linkiez/JCMserver2/issues"
+  },
+  "homepage": "https://github.com/linkiez/JCMserver2#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.3.3",
+    "path": "^0.12.7",
+    "sequelize": "^6.9.0",
+    "sequelize-cli": "^6.3.0"
+  }
+}
