@@ -3,10 +3,11 @@ const FornecedoresController = require('../controllers/FornecedoresController');
 
 const router = Router();
 router
-    .get('/fornecedores', FornecedoresController.findAll)
-    .get('/fornecedores/:id', FornecedoresController.findOne)
-    .post('/fornecedores', FornecedoresController.create)
-    .put('/fornecedores/:id', FornecedoresController.update)
-    .delete('/fornecedores/:id', FornecedoresController.destroy);
+    .get('/fornecedores', FornecedoresController.findAllFornecedor)
+    .get('/fornecedores/id/:id', FornecedoresController.findOneFornecedor)
+    .get('/fornecedores/nome', FornecedoresController.findFornecedorByName)
+    .post('/fornecedores', FornecedoresController.createFornecedor)
+    .put('/fornecedores/id/:id', FornecedoresController.updateFornecedor)
+    .delete('/fornecedores/id/:id', FornecedoresController.destroyFornecedor);
 
     module.exports = router;

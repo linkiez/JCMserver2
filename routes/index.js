@@ -2,6 +2,7 @@ const express = require('express');
 var cors = require('cors')
 
 
+
 const fornecedores = require('./fornecedoresRoutes');
 const produtos = require('./produtosRoutes');
 
@@ -13,6 +14,7 @@ var corsOptions = {
 
 
 module.exports = app => {
+  
   app.use(cors(corsOptions))
   app.use(
       express.json(),
