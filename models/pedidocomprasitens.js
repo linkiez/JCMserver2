@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
   };
   PedidoComprasItens.init({
     dimensao: DataTypes.STRING,
-    quantidade: DataTypes.FLOAT,
+    quantidade: DataTypes.STRING,
     peso: DataTypes.FLOAT,
     preco: DataTypes.FLOAT,
-    ipi: DataTypes.DECIMAL,
-    prazo: DataTypes.DATEONLY
+    ipi: DataTypes.DECIMAL(5,2),
+    prazo: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'PedidoComprasItens',

@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      PedidoCompras.hasMany(models.PedidoComprasItens, { foreignKey: 'pedidoCompras_id', onDelete: 'cascade'})
+      PedidoCompras.hasMany(models.PedidoComprasItens, {onDelete: 'cascade'})
       PedidoCompras.belongsTo(models.Fornecedores)
     }
   };
   PedidoCompras.init({
     pedido: DataTypes.STRING,
-    data_emissao: DataTypes.DATEONLY,
+    data_emissao: DataTypes.DATE,
     cond_pagamento: DataTypes.STRING,
-    frete: DataTypes.DECIMAL,
+    frete: DataTypes.DECIMAL(10, 2),
     transporte: DataTypes.STRING
   }, {
     sequelize,

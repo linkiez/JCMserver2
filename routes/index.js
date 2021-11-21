@@ -5,6 +5,7 @@ var cors = require('cors')
 
 const fornecedores = require('./fornecedoresRoutes');
 const produtos = require('./produtosRoutes');
+const pedidoCompras = require('./pedidoComprasRoutes');
 
 var corsOptions = {
   origin: ['*'],
@@ -22,6 +23,6 @@ module.exports = app => {
         //Rotas aqui
         fornecedores,
         produtos,
-
+        pedidoCompras,
       )
     }

@@ -5,7 +5,7 @@ const router = Router();
 router
     .get('/produtos', ProdutosController.findAllProdutos)
     .get('/produtos/id/:id', ProdutosController.findOneProduto)
-    .get('/produto/nome/', ProdutosController.findProdutoByName)
+    .get('/produtos/nome/:nome', ProdutosController.findProdutoByName)
     .post('/produtos', ProdutosController.createProduto)
     .put('/produtos/id/:id', ProdutosController.updateProduto)
     .delete('/produtos/id/:id', ProdutosController.destroyProduto);

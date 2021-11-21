@@ -25,8 +25,7 @@ class ProdutosController {
     }
 
     static async findProdutoByName(req, res, next){
-        const body = req.body;
-        const nome = body.nome;
+        const { nome } = req.params;
         try{
             const produto = await database.Produtos.findOne({where:{ nome: nome }});
             return res.status(200).json(produto);

@@ -1,0 +1,82 @@
+{
+  "pedido": "F10-016",
+  "fornecedor": "COPERFIL INDUSTRIA E COMERCIO DE PERFILADOS LTDA",
+  "data_emissao": "2018-05-10T03:00:00.000Z",
+  "cond_pagamento": "28 DDL",
+  "frete": 0,
+  "transporte": "CIF - Por Conta do Fornecedor",
+  "itens": [
+    {
+      "produto": "METALON B.CARB 30X20X1,2MM",
+      "dimensao": "6000mm",
+      "quantidade": "",
+      "peso": 109.5,
+      "preco": 5.28,
+      "ipi": 0.05,
+      "prazo": "2018-05-10T03:00:00.000Z"
+    },
+    {
+      "produto": "METALON B.CARB 20X20X1,2MM",
+      "dimensao": "6000mm",
+      "quantidade": "",
+      "peso": 44,
+      "preco": 5.28,
+      "ipi": 0.05,
+      "prazo": "2018-05-10T03:00:00.000Z"
+    },
+    {
+      "produto": "METALON B.CARB 50X30X1,2MM",
+      "dimensao": "6000mm",
+      "quantidade": "",
+      "peso": 90,
+      "preco": 5.28,
+      "ipi": 0.05,
+      "prazo": "2018-05-10T03:00:00.000Z"
+    },
+    {
+      "produto": "METALON B.CARB 40X40X1,2MM",
+      "dimensao": "6000mm",
+      "quantidade": "",
+      "peso": 91,
+      "preco": 5.28,
+      "ipi": 0.05,
+      "prazo": "2018-05-10T03:00:00.000Z"
+    },
+    {
+      "produto": "TUBO B.CARB 19,05 X 1,20MM / 3/4\"",
+      "dimensao": "6000mm",
+      "quantidade": "",
+      "peso": 49.5,
+      "preco": 5.28,
+      "ipi": 0.05,
+      "prazo": "2018-05-10T03:00:00.000Z"
+    },
+    {
+      "produto": "TUBO B.CARB 25,40 X 1,20MM / 1\"",
+      "dimensao": "6000mm",
+      "quantidade": "",
+      "peso": 66,
+      "preco": 5.28,
+      "ipi": 0.05,
+      "prazo": "2018-05-10T03:00:00.000Z"
+    },
+    {
+      "produto": "TUBO B.CARB 31,80 X 1,20MM / 1 1/4\"",
+      "dimensao": "6000mm",
+      "quantidade": "",
+      "peso": 54.5,
+      "preco": 5.28,
+      "ipi": 0.05,
+      "prazo": "2018-05-10T03:00:00.000Z"
+    },
+    {
+      "produto": "TUBO B.CARB 50,80 X 1,20MM / 2\"",
+      "dimensao": "6000mm",
+      "quantidade": "",
+      "peso": 88,
+      "preco": 5.28,
+      "ipi": 0.05,
+      "prazo": "2018-05-10T03:00:00.000Z"
+    }
+  ]
+}
