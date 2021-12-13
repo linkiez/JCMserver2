@@ -43,7 +43,7 @@ class PedidoComprasController {
       return res.status(201).json(pedidoComprasCreated);
     } catch (error) {
       await t.rollback();
-      console.error(error.message);
+      console.error(error);
       return res.status(500).json(error.message);
     }
   }

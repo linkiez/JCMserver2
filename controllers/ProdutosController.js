@@ -8,7 +8,7 @@ class ProdutosController {
             const produtos = await database.Produtos.findAll();
             return res.status(200).json(produtos);
         }catch(error){
-            console.error(error.message);
+            console.error(error);
             return res.status(500).json(error.message);
         }
     }
@@ -19,7 +19,7 @@ class ProdutosController {
             const produto = await database.Produtos.findOne({where:{ id: Number(id) }});
             return res.status(200).json(produto);
         }catch(error){
-            console.error(error.message);
+            console.error(error);
             return res.status(500).json(error.message);
         }
     }
@@ -30,7 +30,7 @@ class ProdutosController {
             const produto = await database.Produtos.findOne({where:{ nome: nome }});
             return res.status(200).json(produto);
         }catch(error){
-            console.error(error.message);
+            console.error(error);
             return res.status(500).json(error.message);
         }
     }
@@ -41,7 +41,7 @@ class ProdutosController {
             const produtoCreated = await database.Produtos.create(produto);
             return res.status(201).json(produtoCreated);
         }catch(error){
-            console.error(error.message);
+            console.error(error);
             return res.status(500).json(error.message);
         }
     }
@@ -54,7 +54,7 @@ class ProdutosController {
             const produtoUpdated = await database.Produtos.findOne({where:{ id: Number(id) }});
             return res.status(202).json(produtoUpdated);
         }catch(error){
-            console.error(error.message);
+            console.error(error);
             return res.status(500).json(error.message);
         }
     }
@@ -65,7 +65,7 @@ class ProdutosController {
             await database.Produtos.destroy({where:{ id: Number(id) }});
             return res.status(202).json({message: `Produto apagado`});
         }catch(error){
-            console.error(error.message);
+            console.error(error);
             return res.status(500).json(error.message);
         }
     }
