@@ -1,7 +1,7 @@
 const database = require("../models");
 
 class PedidoComprasController {
-  static async importPedidoCompras(req, res, next) {
+  static async importPedidoCompras(req, res) {
     let pedidoCompras = req.body;
     let pedidoComprasCreated;
     const t = await database.sequelize.transaction();
@@ -32,15 +32,160 @@ class PedidoComprasController {
 
       pedidoComprasCreated = await database.PedidoCompras.findOne({
         where: { id: pedidoComprasCreated.id },
-        include: [
-          database.Fornecedores,
-          database.PedidoComprasItens,
-        ],
+        include: [database.Fornecedores, database.PedidoComprasItens],
       });
 
       await t.commit();
 
       return res.status(201).json(pedidoComprasCreated);
+    } catch (error) {
+      await t.rollback();
+      console.error(error);
+      return res.status(500).json(error.message);
+    }
+  }
+
+  static async findAllPedidoCompras(req, res) {
+    try {
+      let pedidosCompras = await database.PedidoCompras.findAll({
+        include: [database.Fornecedores],
+      });
+
+      return res.status(200).json(pedidosCompras);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json(error.message);
+    }
+  }
+
+  static async findOnePedidoCompras(req, res) {
+    const { id } = req.params;
+    try {
+      const pedidoCompras = await database.PedidoCompras.findOne({
+        where: { id: Number(id) },
+        include: [
+          database.Fornecedores,
+          { model: database.PedidoComprasItens, include: [database.Produtos] },
+        ],
+      });
+      return res.status(200).json(pedidoCompras);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json(error.message);
+    }
+  }
+
+  static async createPedidoCompras(req, res) {
+    let pedidoComprasCreated;
+    let pedidoCompras;
+
+    const t = await database.sequelize.transaction();
+
+    try {
+      pedidoCompras = req.body;
+
+      pedidoCompras.FornecedoreId = pedidoCompras.Fornecedore.id;
+      delete pedidoCompras.Fornecedore;
+
+      let pedidoComprasItens = pedidoCompras.PedidoComprasItens;
+      delete pedidoCompras.PedidoComprasItens;
+
+      pedidoCompras.data_emissao = new Date();
+
+      pedidoComprasCreated = await database.PedidoCompras.create(pedidoCompras);
+
+      pedidoComprasItens.map(async (item) => {
+        item.PedidoCompraId = pedidoComprasCreated.id;
+
+        item.ProdutoId = item.Produto.id;
+        delete item.Produto;
+
+        let itemCreated = await database.PedidoComprasItens.create(item);
+        return itemCreated;
+      });
+
+      await t.commit();
+
+      pedidoComprasCreated = await database.PedidoCompras.findOne({
+        where: { id: pedidoComprasCreated.id },
+        include: [
+          database.Fornecedores,
+          { model: database.PedidoComprasItens, include: [database.Produtos] },
+        ],
+      });
+
+      return res.status(201).json(pedidoComprasCreated);
+    } catch (error) {
+      await t.rollback();
+      console.error(error);
+      return res.status(500).json(error.message);
+    }
+  }
+
+  static async destroyPedidoCompras(req, res) {
+    const { id } = req.params;
+    const t = await database.sequelize.transaction();
+
+    try {
+      await database.PedidoComprasItens.destroy({
+        where: { PedidoCompraId: Number(id) },
+      });
+      await database.PedidoCompras.destroy({ where: { id: Number(id) } });
+
+      await t.commit();
+
+      return res.status(202).json({ message: `Produto apagado` });
+    } catch (error) {
+      await t.rollback();
+      console.error(error);
+      return res.status(500).json(error.message);
+    }
+  }
+
+  static async updatePedidoCompras(req, res) {
+    let pedidoComprasUpdated;
+    let pedidoCompras;
+    const { id } = req.params;
+
+    const t = await database.sequelize.transaction();
+
+    try {
+      pedidoCompras = req.body;
+
+      let pedidoComprasItens = pedidoCompras.PedidoComprasItens;
+      delete pedidoCompras.PedidoComprasItens;
+      delete pedidoCompras.Fornecedore;
+
+      await database.PedidoCompras.update(pedidoCompras, {
+        where: { id: Number(id) },
+      });
+
+      await database.PedidoComprasItens.destroy({
+        where: { PedidoCompraId: Number(id) },
+      });
+
+      pedidoComprasItens.map(async (item) => {
+        item.PedidoCompraId = id;
+
+        item.ProdutoId = item.Produto.id;
+        delete item.Produto;
+
+        let itemCreated = await database.PedidoComprasItens.create(item);
+        return itemCreated;
+      });
+
+      await t.commit();
+
+      pedidoComprasUpdated = await database.PedidoCompras.findOne({
+        where: { id: id },
+        include: [
+          database.Fornecedores,
+          { model: database.PedidoComprasItens, include: [database.Produtos] },
+        ],
+      });
+
+      return res.status(202).json({ message: `Produto atualizado` });
+
     } catch (error) {
       await t.rollback();
       console.error(error);

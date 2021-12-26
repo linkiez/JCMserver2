@@ -2,7 +2,7 @@ const database = require('../models');
 
 class FornecedoresController {
 
-    static async findAllFornecedor(req, res, next) {
+    static async findAllFornecedor(req, res) {
 
         try{
             const fornecedores = await database.Fornecedores.findAll();
@@ -13,7 +13,7 @@ class FornecedoresController {
         }
     }
 
-    static async findOneFornecedor(req, res, next) {
+    static async findOneFornecedor(req, res) {
         const { id } = req.params;
         try{
             const fornecedor = await database.Fornecedores.findOne({where:{ id: Number(id) }});
@@ -24,7 +24,7 @@ class FornecedoresController {
         }
     }
 
-    static async findFornecedorByName(req, res, next){
+    static async findFornecedorByName(req, res){
         const { nome } = req.params;
         try{
             const produto = await database.Produtos.findOne({where:{ nome: nome }});
@@ -36,7 +36,7 @@ class FornecedoresController {
     }
 
 
-    static async createFornecedor(req, res, next) {
+    static async createFornecedor(req, res) {
         const fornecedor = req.body;
         try{
             const fornecedorCreated = await database.Fornecedores.create(fornecedor);
@@ -47,7 +47,7 @@ class FornecedoresController {
         }
     }
 
-    static async updateFornecedor(req, res, next) {
+    static async updateFornecedor(req, res) {
         const { id } = req.params;
         const fornecedorUpdate = req.body;
         try{
@@ -60,7 +60,7 @@ class FornecedoresController {
         }
     }
 
-    static async destroyFornecedor(req, res, next) {
+    static async destroyFornecedor(req, res) {
         const { id } = req.params;
         try{
             await database.Fornecedores.destroy({where:{ id: Number(id) }});

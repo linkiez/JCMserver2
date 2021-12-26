@@ -2,7 +2,7 @@ const database = require('../models');
 
 class ProdutosController {
 
-    static async findAllProdutos(req, res, next) {
+    static async findAllProdutos(req, res) {
 
         try{
             const produtos = await database.Produtos.findAll();
@@ -13,7 +13,7 @@ class ProdutosController {
         }
     }
 
-    static async findOneProduto(req, res, next) {
+    static async findOneProduto(req, res) {
         const { id } = req.params;
         try{
             const produto = await database.Produtos.findOne({where:{ id: Number(id) }});
@@ -24,7 +24,7 @@ class ProdutosController {
         }
     }
 
-    static async findProdutoByName(req, res, next){
+    static async findProdutoByName(req, res){
         const { nome } = req.params;
         try{
             const produto = await database.Produtos.findOne({where:{ nome: nome }});
@@ -35,7 +35,7 @@ class ProdutosController {
         }
     }
 
-    static async createProduto(req, res, next) {
+    static async createProduto(req, res) {
         const produto = req.body;
         try{
             const produtoCreated = await database.Produtos.create(produto);
@@ -46,7 +46,7 @@ class ProdutosController {
         }
     }
 
-    static async updateProduto(req, res, next) {
+    static async updateProduto(req, res) {
         const { id } = req.params;
         const produtoUpdate = req.body;
         try{
@@ -59,7 +59,7 @@ class ProdutosController {
         }
     }
 
-    static async destroyProduto(req, res, next) {
+    static async destroyProduto(req, res) {
         const { id } = req.params;
         try{
             await database.Produtos.destroy({where:{ id: Number(id) }});
