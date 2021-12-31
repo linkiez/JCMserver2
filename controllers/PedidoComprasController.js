@@ -49,9 +49,34 @@ class PedidoComprasController {
     try {
       let pedidosCompras = await database.PedidoCompras.findAll({
         include: [database.Fornecedores],
+        order: [["id", "DESC"]],
       });
 
-      return res.status(200).json(pedidosCompras);
+      let pedidosComprasTotal = await Promise.all(
+        pedidosCompras.map(async (item) => {
+          let pedidoComprasItens = await database.PedidoComprasItens.findAll({
+            where: { PedidoCompraId: Number(item.id) },
+          });
+
+          let total = 0;
+
+          pedidoComprasItens.forEach(async (pedidoItem) => {
+            total =
+              total +
+              Number(pedidoItem.peso) *
+                Number(pedidoItem.preco) *
+                (1 + Number(pedidoItem.ipi));
+          });
+
+          item = item.toJSON();
+          item.total = total;
+
+          console.log(total);
+          return item;
+        })
+      );
+
+      return res.status(200).json(pedidosComprasTotal);
     } catch (error) {
       console.error(error);
       return res.status(500).json(error.message);
@@ -68,6 +93,23 @@ class PedidoComprasController {
           { model: database.PedidoComprasItens, include: [database.Produtos] },
         ],
       });
+
+      let pedidoComprasItens = await database.PedidoComprasItens.findAll({
+        where: { PedidoCompraId: Number(id) },
+      });
+
+      let total = 0;
+
+      pedidoComprasItens.forEach((pedidoItem) => {
+        total =
+          total +
+          Number(pedidoItem.peso) *
+            Number(pedidoItem.preco) *
+            (1 + Number(pedidoItem.ipi));
+      });
+
+      pedidoCompras.dataValues.total = total;
+
       return res.status(200).json(pedidoCompras);
     } catch (error) {
       console.error(error);
@@ -185,7 +227,6 @@ class PedidoComprasController {
       });
 
       return res.status(202).json({ message: `Produto atualizado` });
-
     } catch (error) {
       await t.rollback();
       console.error(error);
