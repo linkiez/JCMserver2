@@ -15,6 +15,7 @@ app.use(cors(corsOptions));
 
 routes(app);
 database.sequelize.sync({ alter: false, force: false });
+
 app.listen(port, () => console.log(`servidor está rodando na porta ${port}`));
 
 module.exports = app;

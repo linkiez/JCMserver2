@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Produtos.hasMany(models.PedidoComprasItens)
+      Produtos.hasMany(models.PedidoComprasItens);
     }
   }
   Produtos.init(
@@ -18,10 +18,15 @@ module.exports = (sequelize, DataTypes) => {
       categoria: DataTypes.STRING,
       espessura: DataTypes.STRING,
       peso: DataTypes.STRING,
+      deletedAt: DataTypes.DATE,
     },
     {
       sequelize,
       modelName: "Produtos",
+      paranoid: true,
+      defaultScope: {
+        where: { deletedAt: null },
+      },
     }
   );
   return Produtos;

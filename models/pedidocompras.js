@@ -20,10 +20,16 @@ module.exports = (sequelize, DataTypes) => {
     data_emissao: DataTypes.DATE,
     cond_pagamento: DataTypes.STRING,
     frete: DataTypes.DECIMAL(10, 2),
-    transporte: DataTypes.STRING
+    transporte: DataTypes.STRING,
+    deletedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'PedidoCompras',
+    paranoid: true,
+    defaultScope: {
+        where: { deletedAt: null }
+    }
+      
   });
   return PedidoCompras;
 };

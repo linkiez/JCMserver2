@@ -71,7 +71,6 @@ class PedidoComprasController {
           item = item.toJSON();
           item.total = total;
 
-          console.log(total);
           return item;
         })
       );
