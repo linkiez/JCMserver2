@@ -14,7 +14,7 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 routes(app);
-database.sequelize.sync({ alter: false, force: false });
+database.sequelize.sync({ alter: true, force: false });
 
 app.listen(port, () => console.log(`servidor está rodando na porta ${port}`));
 

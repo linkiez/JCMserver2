@@ -3,34 +3,27 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class PedidoComprasItens extends Model {
+  class ListaGenericaItem extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-
-      PedidoComprasItens.belongsTo(models.Produtos)
-      PedidoComprasItens.belongsTo(models.PedidoCompras)
+      ListaGenericaItem.belongsTo(models.ListaGenerica);
     }
   };
-  PedidoComprasItens.init({
-    dimensao: DataTypes.STRING,
-    quantidade: DataTypes.FLOAT,
-    peso: DataTypes.FLOAT,
-    preco: DataTypes.FLOAT,
-    ipi: DataTypes.DECIMAL(5,2),
-    prazo: DataTypes.DATE,
+  ListaGenericaItem.init({
+    nome: DataTypes.STRING,
+    valor: DataTypes.STRING,
     deletedAt: DataTypes.DATE,
   }, {
     sequelize,
-    modelName: 'PedidoComprasItens',
+    modelName: 'ListaGenericaItem',
     paranoid: true,
     defaultScope: {
         where: { deletedAt: null }
     }
   });
-  return PedidoComprasItens;
+  return ListaGenericaItem;
 };

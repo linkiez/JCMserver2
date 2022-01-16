@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class PedidoComprasItens extends Model {
+  class ListaGenerica extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,26 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
-      PedidoComprasItens.belongsTo(models.Produtos)
-      PedidoComprasItens.belongsTo(models.PedidoCompras)
+      ListaGenerica.hasMany(models.ListaGenericaItem,  {onDelete: 'cascade'})
     }
   };
-  PedidoComprasItens.init({
-    dimensao: DataTypes.STRING,
-    quantidade: DataTypes.FLOAT,
-    peso: DataTypes.FLOAT,
-    preco: DataTypes.FLOAT,
-    ipi: DataTypes.DECIMAL(5,2),
-    prazo: DataTypes.DATE,
+  ListaGenerica.init({
+    lista: {
+      type: DataTypes.STRING,
+      unique: true
+    },
     deletedAt: DataTypes.DATE,
   }, {
     sequelize,
-    modelName: 'PedidoComprasItens',
+    modelName: 'ListaGenerica',
     paranoid: true,
     defaultScope: {
         where: { deletedAt: null }
     }
   });
-  return PedidoComprasItens;
+  return ListaGenerica;
 };
