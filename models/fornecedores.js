@@ -45,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "Fornecedores",
       paranoid: true,
+      timestamps: true,
       defaultScope: {
         where: { deletedAt: null },
       },

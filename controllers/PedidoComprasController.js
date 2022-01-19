@@ -108,7 +108,7 @@ class PedidoComprasController {
       });
 
       pedidoCompras.dataValues.total = total;
-
+      
       return res.status(200).json(pedidoCompras);
     } catch (error) {
       console.error(error);
@@ -210,6 +210,7 @@ class PedidoComprasController {
 
         item.ProdutoId = item.Produto.id;
         delete item.Produto;
+        delete item.id;
 
         let itemCreated = await database.PedidoComprasItens.create(item);
         return itemCreated;

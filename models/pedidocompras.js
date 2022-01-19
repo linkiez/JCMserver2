@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'PedidoCompras',
     paranoid: true,
+    timestamps: true,
     defaultScope: {
         where: { deletedAt: null }
     }

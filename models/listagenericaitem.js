@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'ListaGenericaItem',
     paranoid: true,
+    timestamps: true,
     defaultScope: {
         where: { deletedAt: null }
     }
