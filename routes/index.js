@@ -3,6 +3,7 @@ const express = require("express");
 const fornecedores = require("./fornecedoresRoutes");
 const produtos = require("./produtosRoutes");
 const pedidoCompras = require("./pedidoComprasRoutes");
+const listaGenerica = require("./listaGenericaRoutes");
 
 
 
@@ -14,6 +15,7 @@ module.exports = (app) => {
     //Rotas aqui
     fornecedores,
     produtos,
-    pedidoCompras
+    pedidoCompras,
+    listaGenerica,
   );
 };

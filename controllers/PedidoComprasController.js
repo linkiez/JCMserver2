@@ -175,7 +175,7 @@ class PedidoComprasController {
 
       await t.commit();
 
-      return res.status(202).json({ message: `Produto apagado` });
+      return res.status(202).json({ message: `Pedido de compra apagado` });
     } catch (error) {
       await t.rollback();
       console.error(error);
@@ -205,15 +205,14 @@ class PedidoComprasController {
         where: { PedidoCompraId: Number(id) },
       });
 
-      pedidoComprasItens.map(async (item) => {
+      pedidoComprasItens.forEach(async (item) => {
         item.PedidoCompraId = id;
 
         item.ProdutoId = item.Produto.id;
         delete item.Produto;
         delete item.id;
 
-        let itemCreated = await database.PedidoComprasItens.create(item);
-        return itemCreated;
+        await database.PedidoComprasItens.create(item);
       });
 
       await t.commit();
@@ -226,7 +225,7 @@ class PedidoComprasController {
         ],
       });
 
-      return res.status(202).json({ message: `Produto atualizado` });
+      return res.status(202).json({ message: `Pedido de compras atualizado` });
     } catch (error) {
       await t.rollback();
       console.error(error);
