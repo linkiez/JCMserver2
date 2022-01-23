@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
   ListaGenerica.init({
     lista: {
       type: DataTypes.STRING,
-      unique: true
     },
     deletedAt: DataTypes.DATE,
   }, {

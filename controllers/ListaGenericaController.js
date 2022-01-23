@@ -104,7 +104,7 @@ class ListaGenericaController {
 
       await t.commit();
 
-      let listaGenericaUpdated = database.ListaGenerica.findOne({
+      let listaGenericaUpdated = await database.ListaGenerica.findOne({
         where: { id: Number(id) },
         include: database.ListaGenericaItem,
       });
