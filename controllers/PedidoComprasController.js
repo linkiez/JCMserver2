@@ -40,7 +40,7 @@ class PedidoComprasController {
       return res.status(201).json(pedidoComprasCreated);
     } catch (error) {
       await t.rollback();
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }
@@ -77,7 +77,7 @@ class PedidoComprasController {
 
       return res.status(200).json(pedidosComprasTotal);
     } catch (error) {
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }
@@ -111,7 +111,7 @@ class PedidoComprasController {
       
       return res.status(200).json(pedidoCompras);
     } catch (error) {
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }
@@ -158,7 +158,7 @@ class PedidoComprasController {
       return res.status(201).json(pedidoComprasCreated);
     } catch (error) {
       await t.rollback();
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }
@@ -178,7 +178,7 @@ class PedidoComprasController {
       return res.status(202).json({ message: `Pedido de compra apagado` });
     } catch (error) {
       await t.rollback();
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }
@@ -228,7 +228,7 @@ class PedidoComprasController {
       return res.status(202).json({ message: `Pedido de compras atualizado` });
     } catch (error) {
       await t.rollback();
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }

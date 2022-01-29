@@ -8,7 +8,7 @@ class FornecedoresController {
             const fornecedores = await database.Fornecedores.findAll();
             return res.status(200).json(fornecedores);
         }catch(error){
-            console.error(error);
+            console.log(error);
             return res.status(500).json(error.message);
         }
     }
@@ -19,7 +19,7 @@ class FornecedoresController {
             const fornecedor = await database.Fornecedores.findOne({where:{ id: Number(id) }});
             return res.status(200).json(fornecedor);
         }catch(error){
-            console.error(error);
+            console.log(error);
             return res.status(500).json(error.message);
         }
     }
@@ -30,7 +30,7 @@ class FornecedoresController {
             const produto = await database.Produtos.findOne({where:{ nome: nome }});
             return res.status(200).json(produto);
         }catch(error){
-            console.error(error);
+            console.log(error);
             return res.status(500).json(error.message);
         }
     }
@@ -42,7 +42,7 @@ class FornecedoresController {
             const fornecedorCreated = await database.Fornecedores.create(fornecedor);
             return res.status(201).json(fornecedorCreated);
         }catch(error){
-            console.error(error);
+            console.log(error);
             return res.status(500).json(error.message);
         }
     }
@@ -55,7 +55,7 @@ class FornecedoresController {
             const fornecedorUpdated = await database.Fornecedores.findOne({where:{ id: Number(id) }});
             return res.status(202).json(fornecedorUpdated);
         }catch(error){
-            console.error(error);
+            console.log(error);
             return res.status(500).json(error.message);
         }
     }
@@ -66,7 +66,7 @@ class FornecedoresController {
             await database.Fornecedores.destroy({where:{ id: Number(id) }});
             return res.status(202).json({message: `Fornecedor apagado`});
         }catch(error){
-            console.error(error);
+            console.log(error);
             return res.status(500).json(error.message);
         }
     }

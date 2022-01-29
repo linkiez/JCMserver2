@@ -9,7 +9,7 @@ class ListaGenericaController {
 
       return res.status(200).json(listaGenericas);
     } catch (error) {
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }
@@ -24,7 +24,7 @@ class ListaGenericaController {
 
       return res.status(200).json(listaGenerica);
     } catch (error) {
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }
@@ -39,7 +39,7 @@ class ListaGenericaController {
 
       return res.status(200).json(listaGenerica);
     } catch (error) {
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }
@@ -72,7 +72,7 @@ class ListaGenericaController {
       return res.status(201).json(listaGenericaCreated);
     } catch (error) {
       await t.rollback();
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }
@@ -112,7 +112,7 @@ class ListaGenericaController {
       return res.status(202).json(listaGenericaUpdated);
     } catch (error) {
       await t.rollback();
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }
@@ -132,7 +132,7 @@ class ListaGenericaController {
       return res.status(202).json({ message: `Lista apagada` });
     } catch (error) {
       await t.rollback();
-      console.error(error);
+      console.log(error);
       return res.status(500).json(error.message);
     }
   }

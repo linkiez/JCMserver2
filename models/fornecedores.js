@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           isEmail: {
             args: true,
-            msg: "dado do tipo e-mail inválido",
+            msg: "email inválido",
           },
         },
       },
