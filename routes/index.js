@@ -4,6 +4,8 @@ const fornecedores = require("./fornecedoresRoutes");
 const produtos = require("./produtosRoutes");
 const pedidoCompras = require("./pedidoComprasRoutes");
 const listaGenerica = require("./listaGenericaRoutes");
+const usuarios = require("./usuarioRoutes");
+const authentication = require("./authenticationRoutes")
 
 
 
@@ -17,5 +19,7 @@ module.exports = (app) => {
     produtos,
     pedidoCompras,
     listaGenerica,
+    usuarios,
+    authentication
   );
 };
